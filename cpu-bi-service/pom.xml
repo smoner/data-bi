@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.yonyou.yuncai</groupId>
+        <artifactId>cpu-bi</artifactId>
+        <version>1.0.0-rc1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+ 	<version>1.0.4-rc1</version>
+    <artifactId>cpu-bi-service</artifactId>
+    <packaging>war</packaging>
+    <name>cpu-bi-service</name>
+    <url>http://maven.apache.org</url>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.yonyou.yuncai</groupId>
+            <artifactId>cpu-bi-domain</artifactId>
+            <version>${cpu-bi-domain}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yonyou.yuncai</groupId>
+            <artifactId>cpu-bi-api</artifactId>
+            <version>${cpu-bi-api}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yonyou.yuncai</groupId>
+            <artifactId>cpu-bi-dao</artifactId>
+            <version>${cpu-bi-dao}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yonyou.yuncai</groupId>
+            <artifactId>cpu-bi-utils</artifactId>
+            <version>${cpu-bi-utils}</version>
+        </dependency>
+
+        <!-- dubbox start-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>${dubbo.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-expression</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.github.sgroschupf</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>${zkclient.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>${zookeeper.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yonyou.yuncai.cpu</groupId>
+            <artifactId>cpu-material-api</artifactId>
+            <version>${cpu-material-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yonyou.yuncai.cpu</groupId>
+            <artifactId>cpu-material-domain</artifactId>
+            <version>${cpu-material-domain.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yonyou</groupId>
+            <artifactId>cpu-basedoc-api</artifactId>
+            <version>${cpu-basedoc-api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yonyou</groupId>
+            <artifactId>cpu-basedoc-domain</artifactId>
+            <version>${cpu-basedoc-api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yonyou</groupId>
+            <artifactId>cpu-privilege-api</artifactId>
+            <version>${cpu-privilege-api}</version>
+        </dependency>
+        <!-- 权限系统 -->
+        <dependency>
+            <groupId>com.yonyou</groupId>
+            <artifactId>cpu-privilege-domain</artifactId>
+            <version>${privilege.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yonyou</groupId>
+            <artifactId>cpu-common-domain</artifactId>
+            <version>${cpu-common-domain.version}</version>
+        </dependency>
+    </dependencies>
+</project>

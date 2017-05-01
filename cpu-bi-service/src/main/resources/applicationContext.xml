@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 开启注解扫描 -->
+    <context:annotation-config />
+    <!-- 注解扫面包路径 -->
+    <context:component-scan base-package="com.yonyou.*" />
+    <!--&lt;!&ndash; 扫描service包下所有标注@Service的服务组件 &ndash;&gt;-->
+    <!--<context:component-scan base-package="com.yonyou.yuncai.*" />-->
+    <!--&lt;!&ndash; 扫描dao包下所有标注@Repository的DAO组件 &ndash;&gt;-->
+    <!--<context:component-scan base-package="com.yonyou.yuncai.*"/>-->
+    <!-- 使用annotation注解方式配置事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+    <mvc:annotation-driven />
+
+    <!--数据源配置 -->
+    <import resource="classpath:config/spring-mybaits.xml"/>
+    <!-- 数据访问层配置 -->
+    <import resource="classpath:config/spring-dao.xml" />
+    <!--服务层配置 -->
+    <import resource="classpath:config/spring-service.xml" />
+    <!--dubbo服务层配置 -->
+
+    <import resource="classpath:config/applicationContext-dubbo-consumer-basic.xml" />
+    <import resource="classpath:config/spring-dubbo-server-*.xml" />
+    <import resource="classpath:config/spring-dubbo-consumer-*.xml" />
+</beans>

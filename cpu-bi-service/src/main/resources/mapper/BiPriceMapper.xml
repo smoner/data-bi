@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.yuncai.cpu.bi.dao.price.BiPriceDao" >
+  <resultMap id="BaseResultMap" type="com.yonyou.yuncai.cpu.bi.domain.price.BiPriceEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="vtenant_id" property="vtenantId" jdbcType="VARCHAR" />
+    <result column="vpurchase_enterprise_id" property="vpurchaseEnterpriseId" jdbcType="VARCHAR" />
+    <result column="vpurchase_erp_id" property="vpurchaseErpId" jdbcType="VARCHAR" />
+    <result column="vpurchase_code" property="vpurchaseCode" jdbcType="VARCHAR" />
+    <result column="vpurchase_name" property="vpurchaseName" jdbcType="VARCHAR" />
+    <result column="vpurchase" property="vpurchase" jdbcType="VARCHAR" />
+    <result column="vsupply_tenant_id" property="vsupplyTenantId" jdbcType="VARCHAR" />
+    <result column="vsupply_enterprise_id" property="vsupplyEnterpriseId" jdbcType="VARCHAR" />
+    <result column="vsupply_erp_id" property="vsupplyErpId" jdbcType="VARCHAR" />
+    <result column="vsupply_code" property="vsupplyCode" jdbcType="VARCHAR" />
+    <result column="vsupply_name" property="vsupplyName" jdbcType="VARCHAR" />
+    <result column="vsupply" property="vsupply" jdbcType="VARCHAR" />
+    <result column="vmaterial_id" property="vmaterialId" jdbcType="VARCHAR" />
+    <result column="vmaterial_erp_id" property="vmaterialErpId" jdbcType="VARCHAR" />
+    <result column="vmaterial_code" property="vmaterialCode" jdbcType="VARCHAR" />
+    <result column="vmaterial_name" property="vmaterialName" jdbcType="VARCHAR" />
+    <result column="vmaterial" property="vmaterial" jdbcType="VARCHAR" />
+    <result column="nsum" property="nsum" jdbcType="DECIMAL" />
+    <result column="nprice" property="nprice" jdbcType="DECIMAL" />
+    <result column="nmny" property="nmny" jdbcType="DECIMAL" />
+    <result column="vcondition" property="vcondition" jdbcType="VARCHAR" />
+    <result column="vprice" property="vprice" jdbcType="VARCHAR" />
+    <result column="vsrc" property="vsrc" jdbcType="VARCHAR" />
+    <result column="vsrc_mark" property="vsrcMark" jdbcType="VARCHAR" />
+    <result column="dbilldate" property="dbilldate" jdbcType="VARCHAR" />
+    <result column="ts" property="ts" jdbcType="TIMESTAMP" />
+    <result column="vupdate_mark" property="vupdateMark" jdbcType="VARCHAR" />
+      <result column="vmaterial_spec" property="vmaterialSpec" jdbcType="VARCHAR" />
+      <result column="vsupply_prod_id" property="vsupplyProdId" jdbcType="VARCHAR" />
+      <result column="vsupply_prod_name" property="vsupplyProdName" jdbcType="VARCHAR" />
+      <result column="vsupply_prod_code" property="vsupplyProdCode" jdbcType="VARCHAR" />
+      <result column="vunit_name" property="vunitName" jdbcType="VARCHAR" />
+      <result column="vcurrency" property="vcurrency" jdbcType="VARCHAR" />
+      <result column="nprice_notax" property="npriceNoTax" jdbcType="DECIMAL" />
+      <result column="ntax" property="ntax" jdbcType="DECIMAL" />
+      <result column="nmny_notax" property="nmnyNoTax" jdbcType="DECIMAL" />
+      <result column="vsrc_system" property="vsrcSystem" jdbcType="VARCHAR" />
+      <result column="vadd_type" property="vaddType" jdbcType="VARCHAR" />
+      <result column="vsrc_billcode" property="vsrcBillCode" jdbcType="VARCHAR" />
+
+    <result column="jpurchase" property="jpurchase" jdbcType="JSON" typeHandler="com.yonyou.yuncai.cpu.bi.utils.typehandler.JsonTypeHandler" />
+    <result column="jsupply" property="jsupply" jdbcType="JSON" typeHandler="com.yonyou.yuncai.cpu.bi.utils.typehandler.JsonTypeHandler" />
+    <result column="jmaterial" property="jmaterial" jdbcType="JSON" typeHandler="com.yonyou.yuncai.cpu.bi.utils.typehandler.JsonTypeHandler" />
+    <result column="jprice" property="jprice" jdbcType="JSON" typeHandler="com.yonyou.yuncai.cpu.bi.utils.typehandler.JsonTypeHandler" />
+    <result column="jcondition" property="jcondition" jdbcType="JSON" typeHandler="com.yonyou.yuncai.cpu.bi.utils.typehandler.JsonTypeHandler" />
+
+  </resultMap>
+  <insert id="insertBatch" parameterType="java.util.List" >
+    insert into cpu_biprice( vtenant_id,vpurchase_enterprise_id ,vpurchase_erp_id,vpurchase_code,
+    vpurchase_name,vpurchase,vsupply_tenant_id,vsupply_enterprise_id,vsupply_erp_id,
+    vsupply_code,vsupply_name,vsupply,vmaterial_id,vmaterial_erp_id,
+    vmaterial_code,vmaterial_name,vmaterial,nsum,nprice,
+    nmny,vcondition,vprice,vsrc,vsrc_mark,
+    dbilldate,ts,vupdate_mark , vmaterial_spec,vsupply_prod_id,
+      vsupply_prod_name,vsupply_prod_code,vunit_name,vcurrency,nprice_notax,
+      ntax,nmny_notax,vsrc_system,vadd_type,vsrc_billcode ,
+      jpurchase,jsupply, jmaterial,jprice,jcondition)  values
+
+    <foreach collection="list" item="item" index="index"   separator=",">
+      (
+          #{item.vtenantId,jdbcType=VARCHAR},
+          #{item.vpurchaseEnterpriseId,jdbcType=INTEGER},
+          #{item.vpurchaseErpId,jdbcType=VARCHAR},
+          #{item.vpurchaseCode,jdbcType=VARCHAR},
+
+          #{item.vpurchaseName,jdbcType=VARCHAR},
+          #{item.vpurchase,jdbcType=VARCHAR},
+          #{item.vsupplyTenantId,jdbcType=INTEGER},
+          #{item.vsupplyEnterpriseId,jdbcType=VARCHAR},
+          #{item.vsupplyErpId,jdbcType=VARCHAR},
+
+          #{item.vsupplyCode,jdbcType=VARCHAR},
+          #{item.vsupplyName,jdbcType=VARCHAR},
+          #{item.vsupply,jdbcType=INTEGER},
+          #{item.vmaterialId,jdbcType=VARCHAR},
+          #{item.vmaterialErpId,jdbcType=VARCHAR},
+
+          #{item.vmaterialCode,jdbcType=VARCHAR},
+          #{item.vmaterialName,jdbcType=VARCHAR},
+          #{item.vmaterial,jdbcType=INTEGER},
+          #{item.nsum,jdbcType=DECIMAL},
+          #{item.nprice,jdbcType=DECIMAL},
+
+          #{item.nmny,jdbcType=DECIMAL},
+          #{item.vcondition,jdbcType=VARCHAR},
+          #{item.vprice,jdbcType=INTEGER},
+          #{item.vsrc,jdbcType=VARCHAR},
+          #{item.vsrcMark,jdbcType=VARCHAR},
+
+          #{item.dbilldate,jdbcType=VARCHAR},
+          #{item.ts,jdbcType=TIMESTAMP},
+          #{item.vupdateMark,jdbcType=TIMESTAMP},
+          #{item.vmaterialSpec,jdbcType=VARCHAR},
+          #{item.vsupplyProdId,jdbcType=VARCHAR},
+
+          #{item.vsupplyProdName,jdbcType=VARCHAR},
+          #{item.vsupplyProdCode,jdbcType=VARCHAR},
+          #{item.vunitName,jdbcType=VARCHAR},
+          #{item.vcurrency,jdbcType=VARCHAR},
+          #{item.npriceNoTax,jdbcType=DECIMAL},
+
+          #{item.ntax,jdbcType=DECIMAL},
+          #{item.nmnyNoTax,jdbcType=DECIMAL},
+          #{item.vsrcSystem,jdbcType=VARCHAR},
+          #{item.vaddType,jdbcType=VARCHAR},
+          #{item.vsrcBillCode,jdbcType=VARCHAR},
+
+          #{item.jpurchase,jdbcType=JSON},
+          #{item.jsupply,jdbcType=JSON},
+          #{item.jmaterial,jdbcType=JSON},
+          #{item.jprice,jdbcType=JSON},
+          #{item.jcondition,jdbcType=JSON}
+
+      )
+    </foreach>
+  </insert>
+    <insert id="insertBatchTempTable" parameterType="java.util.List" >
+        insert into cpu_biprice_temp_table( vpurchase_enterprise_id ,vsupply_enterprise_id,vmaterial_id )  values
+
+        <foreach collection="list" item="item" index="index"   separator=",">
+            (
+            #{item.vpurchaseEnterpriseId,jdbcType=INTEGER},
+            #{item.vsupplyEnterpriseId,jdbcType=VARCHAR},
+            #{item.vmaterialId,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+  <insert id="insert" parameterType="com.yonyou.yuncai.cpu.bi.domain.price.BiPriceEntity" >
+    insert into cpu_biprice( vtenant_id,vpurchase_enterprise_id ,vpurchase_erp_id,vpurchase_code,
+    vpurchase_name,vpurchase,vsupply_tenant_id,vsupply_enterprise_id,vsupply_erp_id,
+    vsupply_code,vsupply_name,vsupply,vmaterial_id,vmaterial_erp_id,
+    vmaterial_code,vmaterial_name,vmaterial,nsum,nprice,
+    nmny,vcondition,vprice,vsrc,vsrc_mark,
+    dbilldate,ts,vupdate_mark , vmaterial_spec,vsupply_prod_id,
+      vsupply_prod_name,vsupply_prod_code,vunit_name,vcurrency,nprice_notax,
+      ntax,nmny_notax,vsrc_system,vadd_type,vsrc_billcode ,
+      jpurchase,jsupply, jmaterial,jprice,jcondition)  values
+    (
+          #{vtenantId,jdbcType=VARCHAR},
+          #{vpurchaseEnterpriseId,jdbcType=INTEGER},
+          #{vpurchaseErpId,jdbcType=VARCHAR},
+          #{vpurchaseCode,jdbcType=VARCHAR},
+
+          #{vpurchaseName,jdbcType=VARCHAR},
+          #{vpurchase,jdbcType=VARCHAR},
+          #{vsupplyTenantId,jdbcType=INTEGER},
+          #{vsupplyEnterpriseId,jdbcType=VARCHAR},
+          #{vsupplyErpId,jdbcType=VARCHAR},
+
+          #{vsupplyCode,jdbcType=VARCHAR},
+          #{vsupplyName,jdbcType=VARCHAR},
+          #{vsupply,jdbcType=INTEGER},
+          #{vmaterialId,jdbcType=VARCHAR},
+          #{vmaterialErpId,jdbcType=VARCHAR},
+
+          #{vmaterialCode,jdbcType=VARCHAR},
+          #{vmaterialName,jdbcType=VARCHAR},
+          #{vmaterial,jdbcType=INTEGER},
+          #{nsum,jdbcType=DECIMAL},
+          #{nprice,jdbcType=DECIMAL},
+
+          #{nmny,jdbcType=DECIMAL},
+          #{vcondition,jdbcType=VARCHAR},
+          #{vprice,jdbcType=INTEGER},
+          #{vsrc,jdbcType=VARCHAR},
+          #{vsrcMark,jdbcType=VARCHAR},
+
+          #{dbilldate,jdbcType=VARCHAR},
+          #{ts,jdbcType=TIMESTAMP},
+          #{vupdateMark,jdbcType=TIMESTAMP},
+          #{vmaterialSpec,jdbcType=VARCHAR},
+          #{vsupplyProdId,jdbcType=VARCHAR},
+
+          #{vsupplyProdName,jdbcType=VARCHAR},
+          #{vsupplyProdCode,jdbcType=VARCHAR},
+          #{vunitName,jdbcType=VARCHAR},
+          #{vcurrency,jdbcType=VARCHAR},
+          #{npriceNoTax,jdbcType=DECIMAL},
+
+          #{ntax,jdbcType=DECIMAL},
+          #{nmnyNoTax,jdbcType=DECIMAL},
+          #{vsrcSystem,jdbcType=VARCHAR},
+          #{vaddType,jdbcType=VARCHAR},
+          #{vsrcBillCode,jdbcType=VARCHAR},
+
+          #{jpurchase,jdbcType=JSON},
+          #{jsupply,jdbcType=JSON},
+          #{jmaterial,jdbcType=JSON},
+          #{jprice,jdbcType=JSON},
+          #{jcondition,jdbcType=JSON}
+     )
+  </insert>
+  <update id="updateString2Json" parameterType="com.yonyou.yuncai.cpu.bi.domain.price.BiPriceEntity" >
+    update users
+    set context_json = json(context )
+  </update>
+    <select id="selectAvgMinPirce2" parameterType="com.yonyou.yuncai.cpu.bi.domain.price.BiPriceEntity" resultMap="BaseResultMap" >
+        select  max(nprice) ,min(nprice) from cpu_biprice where
+
+        <!--<if test="null != id and id != 0">-->
+             <!--id = #{id,jdbcType=BIGINT}-->
+        <!--</if>-->
+        vpurchase_enterprise_id = #{vpurchaseEnterpriseId,jdbcType=VARCHAR}
+        <!--  and vsupply_enterprise_id=#{vsupplyEnterpriseId,jdbcType=VARCHAR} -->
+        and vmaterial_id=#{vmaterialId,jdbcType=VARCHAR}
+        and nprice != 0
+    </select>
+    <select id="selectAvgMinPirce" parameterType="java.util.List" resultMap="BaseResultMap" >
+        select  avg(nprice) as nprice ,min(nprice) as nmny from cpu_biprice where
+        <foreach collection="list" item="item" index="index" >
+            vpurchase_enterprise_id = #{item.vpurchaseEnterpriseId,jdbcType=VARCHAR}
+            <!--    and vsupply_enterprise_id=#{item.vsupplyEnterpriseId,jdbcType=VARCHAR}-->
+            and vmaterial_id=#{item.vmaterialId,jdbcType=VARCHAR}
+            and nprice != 0
+        </foreach>
+    </select>
+    <select id="selectLastPrice"  parameterType="java.util.List" resultMap="BaseResultMap" >
+        SELECT nprice FROM cpu_biprice where
+        <foreach collection="list" item="item" index="index" >
+            vpurchase_enterprise_id = #{item.vpurchaseEnterpriseId,jdbcType=VARCHAR}
+            <!--<if test="null != item.vsupplyEnterpriseId ">-->
+                <!--and vsupply_enterprise_id=#{item.vsupplyEnterpriseId,jdbcType=VARCHAR}-->
+            <!--</if>-->
+            and vmaterial_id=#{item.vmaterialId,jdbcType=VARCHAR}
+            and dbilldate is not null
+        </foreach>
+        order by dbilldate desc
+        LIMIT 1
+    </select>
+    <select id="selectBatchByDefSql"  parameterType="java.lang.String" resultMap="BaseResultMap" >
+       ${value}
+    </select>
+    <select id="selectBatchByList"  parameterType="java.util.List" resultMap="BaseResultMap" >
+        SELECT * FROM cpu_biprice where vsrc_mark in (
+        <foreach collection="list" item="item" index="index" separator="," >
+            <if test="null != item.vsrcMark ">
+                #{item.vsrcMark,jdbcType=VARCHAR}
+            </if>
+        </foreach>
+        )
+    </select>
+    <update id="updateByDefSql"  parameterType="java.lang.String" >
+        ${value}
+    </update>
+</mapper>
